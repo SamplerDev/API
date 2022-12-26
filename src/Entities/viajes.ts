@@ -15,7 +15,7 @@ export class Viajes extends BaseEntity{
     destino: string ;
 
     @Column()
-    fecha: Date;
+    fechaSalida: Date;
 
     @Column()
     cantidadDias: string;

@@ -13,7 +13,7 @@ export const decodedToken = (context:Context) =>{
     const authorization:string= context.authorization
     const token:string = authorization.replace('Bearer ','')
     const tokenverificado = jwt.verify(token,'MELOHAARETZKEVODCHA')
-   
+     console.log(tokenverificado.user)
     return tokenverificado
     
 }
@@ -24,7 +24,8 @@ export const permissions = shield({
         getViajeID: rules.isAdmin,
         getUserMail: rules.isAdmin,
         getAllUser: rules.isAdmin,
-        getUserID:rules.isAdmin
+        getUserID:rules.isAdmin,
+        
         
 
     },
