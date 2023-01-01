@@ -1,5 +1,6 @@
 import { GraphQLID, GraphQLObjectType,GraphQLString} from 'graphql'
 import { DateResolver } from 'graphql-scalars'
+var GraphQLDate = require('graphql-date')
 
 
 
@@ -8,7 +9,7 @@ name: 'Viaje',
 fields: {
     idViajes: {type: GraphQLID},
     destino:{type:GraphQLString},
-    fecha: { type: DateResolver},
+    fechaSalida: {type : GraphQLDate},
     cantidadDias:{type:GraphQLString},
     precio:{type: GraphQLString},
     hotel: {type: GraphQLString},

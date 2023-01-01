@@ -8,7 +8,7 @@ export const CREATE_VIAJE = {
     type: viajeType,
     args: {        
         destino:{type:GraphQLString},
-        fecha:{type: GraphQLString},
+        fechaSalida:{type: GraphQLString},
         cantidadDias:{type:GraphQLString},
         precio:{type: GraphQLString},
         hotel: {type: GraphQLString},
@@ -22,7 +22,7 @@ export const CREATE_VIAJE = {
         const result = await Viajes.insert({
             
             destino:destino,
-            fecha:fecha,
+            fechaSalida:fecha,
             cantidadDias:cantidadDias,
             precio:precio,
             hotel:hotel,
@@ -63,7 +63,7 @@ export const CREATE_VIAJE = {
     
         idViajes: {type: GraphQLID},
         destino:{type:GraphQLString},
-        fecha:{type: GraphQLString},
+        fechaSalida:{type: GraphQLString},
         cantidadDias:{type:GraphQLString},
         precio:{type: GraphQLString},
         hotel: {type: GraphQLString},
@@ -74,7 +74,7 @@ export const CREATE_VIAJE = {
     
     async resolve(_:any,{idViajes,
         destino,
-        fecha,
+        fechaSalida,
         cantidadDias,
         precio,
         hotel,
@@ -87,7 +87,7 @@ export const CREATE_VIAJE = {
             return false
         }else{
          const response =   await Viajes.update({idViajes},{destino,
-                fecha,
+                fechaSalida,
                 cantidadDias,
                 precio,
                 hotel,

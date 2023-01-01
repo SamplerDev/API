@@ -13,11 +13,10 @@ type: new GraphQLList(viajeType),
 async resolve(_:any,args:any,context:Context)
 {
 
-     const authorization = await decodedToken(context)
-    
+    // const authorization = await decodedToken(context)
+   
     const result = await Viajes.find()
-
-    console.log(authorization)
+    console.log(result)
 
 
     return result;
@@ -77,13 +76,13 @@ export const GET_ALL_VIAJES_DESTINO = {
         type: new GraphQLList(viajeType),
         args: {
             
-            fecha : {type: GraphQLString}
+            fechaSalida : {type: GraphQLString}
         },
-        async resolve(_:any,{fecha}:any, context:Context) {
+        async resolve(_:any,{fechaSalida}:any, context:Context) {
 
             
         
-         const result = await Viajes.find({where:{fecha:fecha} })
+         const result = await Viajes.find({where:{fechaSalida:fechaSalida} })
         
         console.log(result)
         
