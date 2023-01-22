@@ -25,6 +25,8 @@ export const permissions = shield({
         getUserMail: rules.isAdmin,
         getAllUser: rules.isAdmin,
         getUserID:rules.isAdmin,
+        getAllViajes:rules.isAdmin
+
         
         
 
@@ -36,6 +38,7 @@ export const permissions = shield({
         createUser: rules.isAdmin,
         updateUser: rules.isAdmin,
         deleteUser: rules.isAdmin,
+        
       
     }
   })

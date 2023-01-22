@@ -2,7 +2,7 @@ import {GraphQLSchema, GraphQLObjectType} from 'graphql'
 import {GREETING} from './Queries/greetings'
 import { CREATE_USER,UPDATE_USER,DELETE_USER } from './Mutations/User'
 import { CREATE_VIAJE,DELETE_VIAJE,UPDATE_VIAJE } from './Mutations/Viaje'
-import  { GET_VIAJE,GET_ALL_VIAJES, GET_ALL_VIAJES_DESTINO, GET_ALL_VIAJES_FECHA, GET_VIAJE_ID} from './Queries/Viajes'
+import  { GET_VIAJE,GET_ALL_VIAJES, GET_ALL_VIAJES_DESTINO, GET_ALL_VIAJES_FECHA, GET_VIAJE_ID, GET_ALL_VIAJESDISP} from './Queries/Viajes'
 import{GET_ALL_USERS,GET_USER_ID,GET_USER_MAIL} from './Queries/User'
 import { LOGIN } from './Queries/login'
 
@@ -19,6 +19,8 @@ const RootQuery = new GraphQLObjectType({
         getUserMail:GET_USER_MAIL,
         getAllUser:GET_ALL_USERS,
         getUserID: GET_USER_ID,
+        getAllViajesDisp:GET_ALL_VIAJESDISP
+        
     }
 })
 

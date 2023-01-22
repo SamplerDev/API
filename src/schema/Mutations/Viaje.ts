@@ -1,4 +1,5 @@
 import { GraphQLBoolean, GraphQLID, GraphQLString } from "graphql";
+import { GraphQLSafeInt } from "graphql-scalars";
 
 import { Viajes } from "../../Entities/viajes";
 import { viajeType } from "../typeDefs/Viaje";
@@ -14,10 +15,12 @@ export const CREATE_VIAJE = {
         hotel: {type: GraphQLString},
         bus:{type:GraphQLString},
         tipoComida: {type: GraphQLString},
-        linkFoto:{type:GraphQLString},       
+        linkFoto:{type:GraphQLString},
+        lugaresDisp:{type:GraphQLSafeInt}
+               
     },
     async resolve(_:any, args: any){
-        const {id,destino,fecha,cantidadDias,precio,hotel,bus,tipoComida,linkFoto} = args
+        const {id,destino,fecha,cantidadDias,precio,hotel,bus,tipoComida,linkFoto,lugaresDisp} = args
         try{
         const result = await Viajes.insert({
             
@@ -28,7 +31,8 @@ export const CREATE_VIAJE = {
             hotel:hotel,
             bus:bus,
             tipoComida:tipoComida,
-            linkFoto:linkFoto
+            linkFoto:linkFoto,
+            lugaresDisp
         })
         console.log(result)
         return {...args, id: result.identifiers[0].id}
@@ -58,7 +62,7 @@ export const CREATE_VIAJE = {
     
     export const UPDATE_VIAJE= {
     
-    type: GraphQLBoolean,
+    type: GraphQLString,
     args: {
     
         idViajes: {type: GraphQLID},
@@ -70,6 +74,9 @@ export const CREATE_VIAJE = {
         bus:{type:GraphQLString},
         tipoComida: {type: GraphQLString},
         linkFoto:{type:GraphQLString},
+        deleted:{type:GraphQLBoolean},
+        lugaresDisp:{type:GraphQLSafeInt}
+        
     },
     
     async resolve(_:any,{idViajes,
@@ -80,11 +87,14 @@ export const CREATE_VIAJE = {
         hotel,
         bus,
         tipoComida,
-        linkFoto}:any){
+        linkFoto,
+        deleted,
+        lugaresDisp         }:any){
     
         const viajeFound = await Viajes.findOne({where: {idViajes:idViajes}})
+        
         if(viajeFound===null){
-            return false
+            return 'El viaje que quiere modificar no existe'
         }else{
          const response =   await Viajes.update({idViajes},{destino,
                 fechaSalida,
@@ -93,10 +103,12 @@ export const CREATE_VIAJE = {
                 hotel,
                 bus,
                 tipoComida,
-                linkFoto} )
+                linkFoto,
+                deleted,
+                lugaresDisp   } )
 
             console.log(response)
-            return true;
+            return `el viaje con el id:${idViajes} ha sido modificado exitosamente`;
             
         }
 

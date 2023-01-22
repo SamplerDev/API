@@ -2,7 +2,7 @@ import { GraphQLString,GraphQLBoolean,GraphQLID,GraphQLInputObjectType } from "g
 import { User } from "../../Entities/user";
 import { userType } from "../typeDefs/User";
 import {MessageType} from '../typeDefs/messageType'
-import bcrypt from "bcrypt"
+import bcrypt from 'bcrypt'
 import { createJWToken } from "../../util/auth";
 
 

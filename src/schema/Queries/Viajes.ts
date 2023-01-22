@@ -7,6 +7,28 @@ import { viajeType } from "../typeDefs/Viaje";
 
 
 
+
+export const GET_ALL_VIAJESDISP = {
+
+    type: new GraphQLList(viajeType),
+    async resolve(_:any,args:any,context:Context)
+    {
+    
+        // const authorization = await decodedToken(context)
+       
+        const result = await Viajes.find({where: { deleted: false}})
+        console.log(result)
+    
+    
+        return result;
+    
+    }
+    
+    
+    }
+
+
+
 export const GET_ALL_VIAJES = {
 
 type: new GraphQLList(viajeType),

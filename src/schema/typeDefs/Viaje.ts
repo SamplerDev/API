@@ -1,5 +1,7 @@
 import { GraphQLID, GraphQLObjectType,GraphQLString} from 'graphql'
-import { DateResolver } from 'graphql-scalars'
+import { DateResolver, GraphQLBigInt, GraphQLSafeInt } from 'graphql-scalars'
+import { Timestamp } from 'graphql-scalars/typings/mocks'
+import { GraphQLBoolean } from 'graphql/type'
 var GraphQLDate = require('graphql-date')
 
 
@@ -13,9 +15,12 @@ fields: {
     cantidadDias:{type:GraphQLString},
     precio:{type: GraphQLString},
     hotel: {type: GraphQLString},
+    lugaresDisp:{type:GraphQLSafeInt},
     bus:{type:GraphQLString},
     tipoComida: {type: GraphQLString},
     linkFoto:{type:GraphQLString},
+    deleted:{type:GraphQLBoolean},
+    
 }
 
 })
