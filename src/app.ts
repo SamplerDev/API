@@ -1,8 +1,6 @@
 import { graphqlHTTP } from 'express-graphql'
 import {schema} from './schema'
 import express from 'express'
-import {Request} from 'express'
-import { authenticate } from '../src/middleware/auth';
 import { permissions } from './shield/shield';
 import { applyMiddleware } from 'graphql-middleware';
 
@@ -10,7 +8,7 @@ import { applyMiddleware } from 'graphql-middleware';
 const schemaWithPermissions = applyMiddleware(schema,permissions)
 
 
- const app = express();
+ export const app = express();
 
 // app.use(authenticate)
 
