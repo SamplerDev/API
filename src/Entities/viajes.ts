@@ -2,9 +2,6 @@ import {Entity,BaseEntity,PrimaryGeneratedColumn,Column, Timestamp} from "typeor
 import { DateTimeResolver, DateTimeTypeDefinition } from "graphql-scalars"
 
 
-
-
-
 @Entity()
 export class Viajes extends BaseEntity{
 
@@ -38,7 +35,8 @@ export class Viajes extends BaseEntity{
     @Column()
     linkFoto: string;
 
-    
+    @Column()
+    status:String;
 
     @Column('boolean', {default:false})
     deleted:Boolean;

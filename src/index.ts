@@ -13,7 +13,7 @@ import { userToRole } from "./Entities/userToRole";
 const conectDB =  new DataSource({
     type: 'mysql',
     username: 'root',
-    password: 'password',
+    password: 'root',
     port: 3306,
     host : 'localhost',
     database : 'viaje',

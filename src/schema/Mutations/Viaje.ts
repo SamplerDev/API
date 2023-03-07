@@ -1,4 +1,4 @@
-import { GraphQLBoolean, GraphQLID, GraphQLString } from "graphql";
+import { graphql, GraphQLBoolean, GraphQLID, GraphQLString } from "graphql";
 import { GraphQLSafeInt } from "graphql-scalars";
 
 import { Viajes } from "../../Entities/viajes";
@@ -16,11 +16,11 @@ export const CREATE_VIAJE = {
         bus:{type:GraphQLString},
         tipoComida: {type: GraphQLString},
         linkFoto:{type:GraphQLString},
-        lugaresDisp:{type:GraphQLSafeInt}
-               
+        lugaresDisp:{type:GraphQLSafeInt},
+        status:{type:GraphQLString}       
     },
     async resolve(_:any, args: any){
-        const {id,destino,fecha,cantidadDias,precio,hotel,bus,tipoComida,linkFoto,lugaresDisp} = args
+        const {id,destino,fecha,cantidadDias,precio,hotel,bus,tipoComida,linkFoto,lugaresDisp,status} = args
         try{
         const result = await Viajes.insert({
             
@@ -32,7 +32,9 @@ export const CREATE_VIAJE = {
             bus:bus,
             tipoComida:tipoComida,
             linkFoto:linkFoto,
-            lugaresDisp
+            lugaresDisp:lugaresDisp,
+            status:status
+
         })
         console.log(result)
         return {...args, id: result.identifiers[0].id}
@@ -75,7 +77,8 @@ export const CREATE_VIAJE = {
         tipoComida: {type: GraphQLString},
         linkFoto:{type:GraphQLString},
         deleted:{type:GraphQLBoolean},
-        lugaresDisp:{type:GraphQLSafeInt}
+        lugaresDisp:{type:GraphQLSafeInt},
+        status:{type:GraphQLString}
         
     },
     
@@ -89,7 +92,8 @@ export const CREATE_VIAJE = {
         tipoComida,
         linkFoto,
         deleted,
-        lugaresDisp         }:any){
+        lugaresDisp,
+        status     }:any){
     
         const viajeFound = await Viajes.findOne({where: {idViajes:idViajes}})
         
@@ -105,7 +109,8 @@ export const CREATE_VIAJE = {
                 tipoComida,
                 linkFoto,
                 deleted,
-                lugaresDisp   } )
+                lugaresDisp,
+                status   } )
 
             console.log(response)
             return `el viaje con el id:${idViajes} ha sido modificado exitosamente`;

@@ -18,12 +18,14 @@ const schemaWithPermissions = applyMiddleware(schema,permissions)
     graphqlHTTP((req)=>{
 
         const {authorization} = req.headers
-        
+        console.log(authorization)
        return{ graphiql: {headerEditorEnabled: true},
         schema:schemaWithPermissions,
         context:{
               authorization  
-        }}
+        }
+    
+    }
 
     }))
 
