@@ -20,6 +20,7 @@ fields: {
     tipoComida: {type: GraphQLString},
     linkFoto:{type:GraphQLString},
     deleted:{type:GraphQLBoolean},
+    creadoPor: {type: GraphQLString}
     
 }
 

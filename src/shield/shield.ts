@@ -35,7 +35,7 @@ export const permissions = shield({
         createViaje: rules.isAdmin,
         deleteViaje: rules.isAdmin,
         updateViaje: rules.isAdmin,
-        createUser: rules.isAdmin,
+       // createUser: rules.isAdmin,
         updateUser: rules.isAdmin,
         deleteUser: rules.isAdmin,
         

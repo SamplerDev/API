@@ -1,5 +1,6 @@
-import {Entity,BaseEntity,PrimaryGeneratedColumn,Column, Timestamp} from "typeorm"
+import {Entity,BaseEntity,PrimaryGeneratedColumn,Column, Timestamp, OneToMany, ManyToOne} from "typeorm"
 import { DateTimeResolver, DateTimeTypeDefinition } from "graphql-scalars"
+import { User } from "./user";
 
 
 @Entity()
@@ -11,8 +12,8 @@ export class Viajes extends BaseEntity{
     @Column()
     destino: string ;
 
-    @Column()
-    fechaSalida: Date;
+    @Column({default:null})
+    fechaSalida!: Date;
 
     @Column()
     cantidadDias: string;
@@ -35,12 +36,15 @@ export class Viajes extends BaseEntity{
     @Column()
     linkFoto: string;
 
-    @Column()
-    status:String;
+    @Column('boolean',{default:true})
+    status:boolean;
 
     @Column('boolean', {default:false})
-    deleted:Boolean;
-
+    deleted:boolean;
+    
+    @Column()
+    creadoPor: number;
+    
    
 
 

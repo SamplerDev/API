@@ -1,7 +1,10 @@
+import { Context } from "apollo-server-core";
 import { graphql, GraphQLBoolean, GraphQLID, GraphQLString } from "graphql";
 import { GraphQLSafeInt } from "graphql-scalars";
+import { User } from "../../Entities/user";
 
 import { Viajes } from "../../Entities/viajes";
+import { decodedToken } from "../../shield/shield";
 import { viajeType } from "../typeDefs/Viaje";
 
 export const CREATE_VIAJE = {
@@ -19,13 +22,16 @@ export const CREATE_VIAJE = {
         lugaresDisp:{type:GraphQLSafeInt},
         status:{type:GraphQLString}       
     },
-    async resolve(_:any, args: any){
-        const {id,destino,fecha,cantidadDias,precio,hotel,bus,tipoComida,linkFoto,lugaresDisp,status} = args
+    async resolve(_:any, args: any,context:Context){
+        const {id,destino,fechaSalida,cantidadDias,precio,hotel,bus,tipoComida,linkFoto,lugaresDisp,status} = args
         try{
+            let id= decodedToken(context)
+            let user = await User.findOne({where:{id:id.id}})
+
         const result = await Viajes.insert({
             
             destino:destino,
-            fechaSalida:fecha,
+            fechaSalida:fechaSalida,
             cantidadDias:cantidadDias,
             precio:precio,
             hotel:hotel,
@@ -33,11 +39,13 @@ export const CREATE_VIAJE = {
             tipoComida:tipoComida,
             linkFoto:linkFoto,
             lugaresDisp:lugaresDisp,
-            status:status
+            status:status,
+            creadoPor:  user?.id
 
         })
         console.log(result)
-        return {...args, id: result.identifiers[0].id}
+        return {fechaSalida: result.generatedMaps[0].fechaSalida,
+        destino: result.generatedMaps[0].destino, }
     }
     catch(error){
         console.log(error)
